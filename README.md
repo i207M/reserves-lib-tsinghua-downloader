@@ -15,7 +15,7 @@ Download pages from http://reserves.lib.tsinghua.edu.cn/
 
 Q: 如何生成教参的PDF？
 
-A: 目前的解决方案是使用学校提供的正版福昕编辑器，将多个图片合成PDF，并可以进行OCR文字识别/图片压缩。
+A: 目前的解决方案是使用学校提供的正版福昕编辑器，将多个图片合成PDF，并可以进行OCR文字识别/图片压缩。 现在, 下载完成后会询问是否自动合并为 PDF 文件, 但是需要安装 `img2pdf` 库.
 
 Q: 运行报错`ModuleNotFoundError: No module named 'requests'`，怎么办？
 

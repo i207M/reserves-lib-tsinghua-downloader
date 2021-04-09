@@ -45,6 +45,22 @@ def cookie_init() -> None:
         cookie['.ASPXAUTH'] = _data[0]
         cookie['ASP.NET_SessionId'] = _data[1]
 
+def merge(path):
+    print('Do you want to merge them into a pdf file? Please answer [Y]es/[N]o:',end='')
+    while True:
+        answerstr=input()
+        if answerstr=='Y' or answerstr=='y':
+            if(os.path.exists(path+'/output.pdf')):
+                os.remove(path+'/output.pdf')
+            
+            os.system('img2pdf '+path+'/* --output '+path+'/output.pdf')
+            os.system('rm '+path+'/*.jpg')
+            break
+        elif answerstr=='N' or answerstr=='n':
+            break
+        else:
+            print('Please answer [Y]es/[N]o:',end='')
+
 
 def claw(url: str) -> None:
 
@@ -85,6 +101,7 @@ def claw(url: str) -> None:
         id += 1
     print(f'Total page number: {page_num}')
 
+    merge(path)
 
 if __name__ == '__main__':
     url = input('INPUT URL:')
