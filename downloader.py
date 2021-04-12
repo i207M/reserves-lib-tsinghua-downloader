@@ -46,7 +46,7 @@ def cookie_init() -> None:
         cookie['ASP.NET_SessionId'] = _data[1]
 
 
-def claw(url: str) -> None:
+def claw(url: str, start_page: int) -> None:
 
     # modify url
     url = url_shape(url)
@@ -69,17 +69,18 @@ def claw(url: str) -> None:
         # print(image_url)
         cnt = 0
         while True:
-            ret = requests.get(image_url.format(cnt + 1), cookies=cookie)
-            if ret.status_code != 200:
-                if ret.status_code == 404:
-                    print(f'Clawed: {id=}, {cnt=}')
-                    break
-                raise Exception(f'HTTP error {ret.status_code}')
-            # A login html (~7kB) is downloaded when cookies are invalid.
-            if need_cookie and len(ret.content) < 10 * 1024:
-                raise Exception('Unable to download. Perhaps due to invalid cookies.')
-            with open(f'{path}/{page_num:05d}.jpg', 'wb+') as f:
-                f.write(ret.content)
+            if page_num >= start_page:
+                ret = requests.get(image_url.format(cnt + 1), cookies=cookie)
+                if ret.status_code != 200:
+                    if ret.status_code == 404:
+                        print(f'Clawed: {id=}, {cnt=}')
+                        break
+                    raise Exception(f'HTTP error {ret.status_code}')
+                # A login html (~7kB) is downloaded when cookies are invalid.
+                if need_cookie and len(ret.content) < 10 * 1024:
+                    raise Exception('Unable to download. Perhaps due to invalid cookies.')
+                with open(f'{path}/{page_num:05d}.jpg', 'wb+') as f:
+                    f.write(ret.content)
             cnt += 1
             page_num += 1
         id += 1
@@ -88,4 +89,12 @@ def claw(url: str) -> None:
 
 if __name__ == '__main__':
     url = input('INPUT URL:')
-    claw(url)
+    start_page = input('INPUT START PAGE [default 0]: ')
+    try:
+        start_page = int(start_page)
+    except ValueError as err:
+        start_page = 0
+
+    if start_page < 0:
+        start_page = 0
+    claw(url, start_page)
