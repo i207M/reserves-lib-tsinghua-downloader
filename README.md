@@ -1,3 +1,11 @@
+# NOTICE
+
+2021年末，学校升级相关接口，旧脚本会出现死循环的问题。
+
+借此机会，本项目将移交至一个小组维护。请移步 [libthu/reserves-lib-tsinghua-downloader](https://github.com/libthu/reserves-lib-tsinghua-downloader)，本仓库今后将不再更新。在新仓库中，应已完成对接口的升级。
+
+谢谢大家的支持！
+
 # 清华教参服务平台 辅助工具
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/i207M/reserves-lib-tsinghua-downloader) ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/i207M/reserves-lib-tsinghua-downloader/Release%20Test/main) ![GitHub issues](https://img.shields.io/github/issues/i207M/reserves-lib-tsinghua-downloader) [![Netlify Status](https://api.netlify.com/api/v1/badges/d6a79087-90b9-4659-9700-acd47b95cd9b/deploy-status)](https://reserves-lib.netlify.app/)
